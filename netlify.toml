@@ -1,0 +1,680 @@
+[functions]
+
+  [functions._ipx]
+  node_bundler = "nft"
+
+  [functions.___netlify-handler]
+  included_files = [
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.production.local",
+    "./public/locales/**",
+    "./next-i18next.config.js",
+    ".next/server/**",
+    ".next/serverless/**",
+    ".next/*.json",
+    ".next/BUILD_ID",
+    ".next/static/chunks/webpack-middleware*.js",
+    "!.next/server/**/*.js.nft.json",
+    "!.next/server/**/*.map",
+    "!**/node_modules/@next/swc*/**/*",
+    "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+    "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/compiled/webpack/bundle4.js",
+    "!node_modules/next/dist/compiled/webpack/bundle5.js",
+    "node_modules/styled-jsx/style.js",
+    "!node_modules/sharp/**/*"
+  ]
+  external_node_modules = []
+  node_bundler = "nft"
+
+  [functions.___netlify-odb-handler]
+  included_files = [
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.production.local",
+    "./public/locales/**",
+    "./next-i18next.config.js",
+    ".next/server/**",
+    ".next/serverless/**",
+    ".next/*.json",
+    ".next/BUILD_ID",
+    ".next/static/chunks/webpack-middleware*.js",
+    "!.next/server/**/*.js.nft.json",
+    "!.next/server/**/*.map",
+    "!**/node_modules/@next/swc*/**/*",
+    "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+    "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/compiled/webpack/bundle4.js",
+    "!node_modules/next/dist/compiled/webpack/bundle5.js",
+    "node_modules/styled-jsx/style.js",
+    "!node_modules/sharp/**/*"
+  ]
+  external_node_modules = []
+  node_bundler = "nft"
+
+  [functions."_api_*"]
+  included_files = [
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.production.local",
+    "./public/locales/**",
+    "./next-i18next.config.js",
+    ".next/server/**",
+    ".next/serverless/**",
+    ".next/*.json",
+    ".next/BUILD_ID",
+    ".next/static/chunks/webpack-middleware*.js",
+    "!.next/server/**/*.js.nft.json",
+    "!.next/server/**/*.map",
+    "!**/node_modules/@next/swc*/**/*",
+    "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+    "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+    "!node_modules/next/dist/compiled/webpack/bundle4.js",
+    "!node_modules/next/dist/compiled/webpack/bundle5.js",
+    "node_modules/styled-jsx/style.js",
+    "!node_modules/sharp/**/*"
+  ]
+  external_node_modules = []
+  node_bundler = "nft"
+
+[build]
+command = "NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn build"
+
+  [build.environment]
+  NEXT_PRIVATE_TARGET = "server"
+
+[[headers]]
+for = "/*"
+
+  [headers.values]
+  X-DNS-Prefetch-Control = "on"
+  Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+  X-Frame-Options = "SAMEORIGIN"
+  Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+  X-Content-Type-Options = "nosniff"
+  X-XSS-Protection = "1; mode=block"
+  Referrer-Policy = "no-referrer"
+
+[[headers]]
+for = "/en-US/*"
+
+  [headers.values]
+  X-DNS-Prefetch-Control = "on"
+  Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+  X-Frame-Options = "SAMEORIGIN"
+  Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+  X-Content-Type-Options = "nosniff"
+  X-XSS-Protection = "1; mode=block"
+  Referrer-Policy = "no-referrer"
+
+[[headers]]
+for = "/de-DE/*"
+
+  [headers.values]
+  X-DNS-Prefetch-Control = "on"
+  Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+  X-Frame-Options = "SAMEORIGIN"
+  Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+  X-Content-Type-Options = "nosniff"
+  X-XSS-Protection = "1; mode=block"
+  Referrer-Policy = "no-referrer"
+
+[[redirects]]
+from = "/_next/static/*"
+to = "/static/:splat"
+status = 200
+
+[[redirects]]
+from = "/:locale/_next/static/*"
+to = "/static/:splat"
+status = 200
+
+[[redirects]]
+from = "/_next/image*"
+to = "/_ipx/w_:width,q_:quality/:url"
+status = 301
+
+  [redirects.query]
+  url = ":url"
+  w = ":width"
+  q = ":quality"
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/builders/_ipx"
+status = 200
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/robots.txt"
+to = "/robots.txt"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/android-chrome-192x192.png"
+to = "/favicons/android-chrome-192x192.png"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/android-chrome-384x384.png"
+to = "/favicons/android-chrome-384x384.png"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/apple-touch-icon.png"
+to = "/favicons/apple-touch-icon.png"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/browserconfig.xml"
+to = "/favicons/browserconfig.xml"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/favicon-16x16.png"
+to = "/favicons/favicon-16x16.png"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/favicon-32x32.png"
+to = "/favicons/favicon-32x32.png"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/favicon.ico"
+to = "/favicons/favicon.ico"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/mstile-150x150.png"
+to = "/favicons/mstile-150x150.png"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/safari-pinned-tab.svg"
+to = "/favicons/safari-pinned-tab.svg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/favicons/site.webmanifest"
+to = "/favicons/site.webmanifest"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/assets/svg/blog-logo.svg"
+to = "/assets/svg/blog-logo.svg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/assets/svg/contentful.svg"
+to = "/assets/svg/contentful.svg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/assets/svg/example.svg"
+to = "/assets/svg/example.svg"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/locales/de-DE/common.json"
+to = "/locales/de-DE/common.json"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/locales/en-US/common.json"
+to = "/locales/en-US/common.json"
+status = 200
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+force = true
+
+  [redirects.conditions]
+  Cookie = [
+    "__prerender_bypass",
+    "__next_preview_data"
+  ]
+
+[[redirects]]
+from = "/_next/data/CX3Isr1WdpjG0x0Wb0rFb/en-US.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/CX3Isr1WdpjG0x0Wb0rFb/de-DE.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/de-DE"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+force = true
+
+[[redirects]]
+from = "/_next/data/CX3Isr1WdpjG0x0Wb0rFb/en-US/sitemap.xml.json"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/sitemap.xml"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/_next/data/CX3Isr1WdpjG0x0Wb0rFb/de-DE/sitemap.xml.json"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/de-DE/sitemap.xml"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[[redirects]]
+from = "/_next/data/CX3Isr1WdpjG0x0Wb0rFb/en-US/:slug.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+
+[[redirects]]
+from = "/:slug"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+
+[[redirects]]
+from = "/_next/data/CX3Isr1WdpjG0x0Wb0rFb/de-DE/:slug.json"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+
+[[redirects]]
+from = "/de-DE/:slug"
+to = "/.netlify/builders/___netlify-odb-handler"
+status = 200
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/___netlify-handler"
+status = 200
+
+[context]
+
+  [context.production]
+
+    [context.production.environment]
+    NEXT_PRIVATE_TARGET = "server"
+
+    [context.production.functions]
+
+      [context.production.functions._ipx]
+      node_bundler = "nft"
+
+      [context.production.functions.___netlify-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js",
+        "node_modules/styled-jsx/style.js",
+        "!node_modules/sharp/**/*"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.production.functions.___netlify-odb-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js",
+        "node_modules/styled-jsx/style.js",
+        "!node_modules/sharp/**/*"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.production.functions."_api_*"]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js",
+        "node_modules/styled-jsx/style.js",
+        "!node_modules/sharp/**/*"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+    [context.production.build]
+
+      [context.production.build.environment]
+      NEXT_PRIVATE_TARGET = "server"
+
+    [[context.production.headers]]
+    for = "/*"
+
+      [context.production.headers.values]
+      X-DNS-Prefetch-Control = "on"
+      Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+      X-Frame-Options = "SAMEORIGIN"
+      Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+      X-Content-Type-Options = "nosniff"
+      X-XSS-Protection = "1; mode=block"
+      Referrer-Policy = "no-referrer"
+
+    [[context.production.headers]]
+    for = "/en-US/*"
+
+      [context.production.headers.values]
+      X-DNS-Prefetch-Control = "on"
+      Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+      X-Frame-Options = "SAMEORIGIN"
+      Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+      X-Content-Type-Options = "nosniff"
+      X-XSS-Protection = "1; mode=block"
+      Referrer-Policy = "no-referrer"
+
+    [[context.production.headers]]
+    for = "/de-DE/*"
+
+      [context.production.headers.values]
+      X-DNS-Prefetch-Control = "on"
+      Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+      X-Frame-Options = "SAMEORIGIN"
+      Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+      X-Content-Type-Options = "nosniff"
+      X-XSS-Protection = "1; mode=block"
+      Referrer-Policy = "no-referrer"
+
+  [context.main]
+
+    [context.main.environment]
+    NEXT_PRIVATE_TARGET = "server"
+
+    [context.main.functions]
+
+      [context.main.functions._ipx]
+      node_bundler = "nft"
+
+      [context.main.functions.___netlify-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js",
+        "node_modules/styled-jsx/style.js",
+        "!node_modules/sharp/**/*"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.main.functions.___netlify-odb-handler]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js",
+        "node_modules/styled-jsx/style.js",
+        "!node_modules/sharp/**/*"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+      [context.main.functions."_api_*"]
+      included_files = [
+        ".env",
+        ".env.local",
+        ".env.production",
+        ".env.production.local",
+        "./public/locales/**",
+        "./next-i18next.config.js",
+        ".next/server/**",
+        ".next/serverless/**",
+        ".next/*.json",
+        ".next/BUILD_ID",
+        ".next/static/chunks/webpack-middleware*.js",
+        "!.next/server/**/*.js.nft.json",
+        "!.next/server/**/*.map",
+        "!**/node_modules/@next/swc*/**/*",
+        "!node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*",
+        "!node_modules/next/dist/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/next-server/server/lib/squoosh/**/*.wasm",
+        "!node_modules/next/dist/compiled/webpack/bundle4.js",
+        "!node_modules/next/dist/compiled/webpack/bundle5.js",
+        "node_modules/styled-jsx/style.js",
+        "!node_modules/sharp/**/*"
+      ]
+      external_node_modules = []
+      node_bundler = "nft"
+
+    [context.main.build]
+
+      [context.main.build.environment]
+      NEXT_PRIVATE_TARGET = "server"
+
+    [[context.main.headers]]
+    for = "/*"
+
+      [context.main.headers.values]
+      X-DNS-Prefetch-Control = "on"
+      Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+      X-Frame-Options = "SAMEORIGIN"
+      Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+      X-Content-Type-Options = "nosniff"
+      X-XSS-Protection = "1; mode=block"
+      Referrer-Policy = "no-referrer"
+
+    [[context.main.headers]]
+    for = "/en-US/*"
+
+      [context.main.headers.values]
+      X-DNS-Prefetch-Control = "on"
+      Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+      X-Frame-Options = "SAMEORIGIN"
+      Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+      X-Content-Type-Options = "nosniff"
+      X-XSS-Protection = "1; mode=block"
+      Referrer-Policy = "no-referrer"
+
+    [[context.main.headers]]
+    for = "/de-DE/*"
+
+      [context.main.headers.values]
+      X-DNS-Prefetch-Control = "on"
+      Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+      X-Frame-Options = "SAMEORIGIN"
+      Content-Security-Policy = "frame-ancestors 'self' https://app.contentful.com https://app.eu.contentful.com"
+      X-Content-Type-Options = "nosniff"
+      X-XSS-Protection = "1; mode=block"
+      Referrer-Policy = "no-referrer"
