@@ -16,6 +16,6 @@ jobs:
       - uses: contentful/actions-app-deploy@v1
         with:
           organization-id: ${{ secrets.6gJVHHGFZgPp5BnTlBecvq }}
-          app-definition-id: ${{ secrets.2qJ72kqfZbjdGh4P4kd83i }}
+          app-definition-id: ${{ secrets.d4:7b:cc:4f:8e:62:c3:de:9b:1a:f2:bb:a5:c0:8f:92:52:10:50:41:45:39:7c:5e:24:66:48:20:a3:49:c1:0f }}
           access-token: ${{ secrets.CFPAT-qpc5Juc1ISffszvsnn1VpzIdo2632-Ti7I03VmCbsNY }}
           folder: build
